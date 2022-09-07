@@ -36,7 +36,7 @@ With this package, it is done for you to just send your message and "await" it w
 
 ## Demo
 
-This is a simple [_**Demo**_](https://github.com/Ali-A-Koye/fast-file/tree/master/demo) environment for the package where you can use and test the package , in the demo folder, there are 2 folders called A and B which represent Microservice A and Microservice B and the package is integrated with both of them so they can communicate with each other.
+This is a simple [_**Demo**_](https://github.com/Ali-A-Koye/rabbitmq-easy-rpc/tree/master/demo) environment for the package where you can use and test the package , in the demo folder, there are 2 folders called A and B which represent Microservice A and Microservice B and the package is integrated with both of them so they can communicate with each other.
 
 Work with the Demo instruction ( for each microservice )  :
 
