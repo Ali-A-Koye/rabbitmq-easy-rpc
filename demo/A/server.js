@@ -5,9 +5,8 @@ const dotenv = require("dotenv");
 dotenv.config();
 const amqplib = require("amqplib");
 
-const rabbitmqEasyRpc = require("rabbitmq-easy-rpc");
+const rabbitmqEasyRpc = require("rabbitmq-easy-rpc").default;
 
-console.log(rabbitmqEasyRpc)
 let connection;
 let channel;
 

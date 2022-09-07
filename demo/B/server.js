@@ -10,7 +10,7 @@ const rabbitmqEasyRpc = require("rabbitmq-easy-rpc").default;
 let connection;
 let channel;
 
-//Microservice A
+//Microservice B
 
 app.get("/send", async (req, res) => {
   let response = await rabbitmqEasyRpc.request({
