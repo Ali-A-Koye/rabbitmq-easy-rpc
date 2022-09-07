@@ -3,13 +3,18 @@ import ListenType from "../types/listen.d";
 const listen = (values: ListenType) => {
   const { channel, callback } = values;
 
-  channel.assertQueue((process.env.microservice_origin = __dirname), {
+  if(!process.env.microservice_origin) {
+     console.log("No origin set for microservice in the environment variables")
+     process.exit(1);
+    }
+  
+  channel.assertQueue((process.env.microservice_origin), {
     durable: false,
   });
   channel.prefetch(1);
 
   channel.consume(
-    (process.env.microservice_origin = __dirname),
+    (process.env.microservice_origin),
     async (msg) => {
       if (msg !== null) {
         const data = msg.content.toString();
