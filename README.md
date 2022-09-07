@@ -86,7 +86,7 @@ The rabbitMQ Easy RPC package doesn't require any special configurations and adj
 
 Labeling your project is like having a name so that others can call you and you can call others by this name.
 
-The package tries to get it from the env, so make sure you have this key and its value available in your process.env , an example od .env :   
+The package tries to get it from the env, so make sure you have this key and its value available in your process.env , an example of .env :   
  
 
 ```javascript
