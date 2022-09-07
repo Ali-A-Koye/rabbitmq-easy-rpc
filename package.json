@@ -1,6 +1,6 @@
 {
   "name": "rabbitmq-easy-rpc",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "npm package to make it easy and simple to work with RabbitMQ's RPC (Remote Procedure Call).",
   "main": "dist/lib/index.js",
   "types": "dist/lib/index.d.ts",
