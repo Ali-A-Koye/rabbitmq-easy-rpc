@@ -10,6 +10,9 @@ const request = async (values: RequestType) => {
     const q = await channel.assertQueue("", {
       durable: false,
       autoDelete: true,
+      arguments:{
+        "x-single-active-consumer": true,
+      }
     });
 
     channel.sendToQueue(to, Buffer.from(data), {
