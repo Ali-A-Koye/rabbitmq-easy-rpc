@@ -1,7 +1,7 @@
-const entry = () => {
+import listen from './listen';
+import request from './request';
 
-    console.log('Hello World');
-
+export default {
+    listen,
+    request
 };
-
-export default entry;
