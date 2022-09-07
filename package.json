@@ -15,7 +15,6 @@
     "utility",
     "asynchronous"
   ],
-
   "repository": {
     "prepublish": "npm run build",
     "type": "git",
