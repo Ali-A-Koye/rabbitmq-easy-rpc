@@ -1,8 +1,6 @@
 const express = require("express");
 const app = express();
 const port = 4000;
-const dotenv = require("dotenv");
-dotenv.config();
 const amqplib = require("amqplib");
 
 const rabbitmqEasyRpc = require("rabbitmq-easy-rpc").default;
@@ -33,6 +31,8 @@ app.listen(port, async () => {
       //any logic you want to do before sending back to the client
       console.log(data);
     },
+    source: "microservice_B",
+
   });
 
   console.log(`Example app listening on port ${port}`);
