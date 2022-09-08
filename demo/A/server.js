@@ -3,8 +3,9 @@ const app = express();
 const port = 3000;
 const amqplib = require("amqplib");
 
-const rabbitmqEasyRpc = require("rabbitmq-easy-rpc").default;
-
+const rabbitmqEasyRpc = require("rabbitmq-easy-rpc");
+// const rabbitmqEasyRpc = require("../../dist/lib/index").default;
+console.log(rabbitmqEasyRpc);
 let connection;
 let channel;
 
