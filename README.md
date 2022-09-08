@@ -98,7 +98,7 @@ rabbitmqEasyRpc.listen({
   });
 ```
 
-### 3 - requesting or sending data to other places and wait for their response.
+### 2 - requesting or sending data to other places and wait for their response.
 
 You need this functionality to communicate with the other microservices. Maybe your microservice depends on another microservice, so it has to wait for the response to proceed.
 
