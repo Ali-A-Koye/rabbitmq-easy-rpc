@@ -27,7 +27,6 @@ With this package, it is done for you to just send your message and "await" it w
 *   [_**Demo**_](#demo)
 *   [_**Requirements**_](#requirements)
 *   [_**Usage**_](#usage)
-    *   [_**Configurations**_](#1---configurations)
     *   [_**Listening to incoming messages from others**_](#2---listening-to-incoming-messages-from-others)
     *   [_**requesting or sending data to other places and waiting for their response**_](#3---requesting-or-sending-data-to-other-places-and-wait-for-their-response)_**.**_
 *   [_**API**_](#api)
@@ -71,7 +70,7 @@ import rabbitmqEasyRpc from "rabbitmq-easy-rpc";
 ### Javascript
 
 ```javascript
-const rabbitmqEasyRpc = require("rabbitmq-easy-rpc").default;
+const rabbitmqEasyRpc = require("rabbitmq-easy-rpc");
 ```
 
 ## Usage
@@ -80,26 +79,13 @@ The package consists of two functions that operate two major functions ( Listeni
 
 With our aim for simplicity of this package, the integration part is the easiest and we will demonstrate it below.  
 
-### 1 - Configurations
+### 1 - Listening to incoming messages from others
 
-The rabbitMQ Easy RPC package doesn't require any special configurations and adjustments. However, there is one small configuration required for this package to operate and that's labeling your projects.
-
-Labeling your project is like having a name so that others can call you and you can call others by this name.
-
-The package tries to get it from the env, so make sure you have this key and its value available in your process.env , an example of .env :   
- 
-
-```javascript
-microservice_origin = microservice_name   //process.env.microservice_origin
-```
-
-### 2 - Listening to incoming messages from others
-
-You need this functionality only if you expect that you might get an RPC call from another place and your microservice has to respond. _In that case, you must call this function with the server starting so it will establish a queue and a consumer to be ready for incoming messages._  
- 
+You need this functionality only if you expect that you might get an RPC call from another place and your microservice has to respond. _In that case, you must call this function with the server starting so it will establish a queue and a consumer to be ready for incoming messages._  
 
 *   The first parameter is the rabbitMQ's channel, which should be used to receive incoming messages. You can reuse your channels and pass any channel you want.
 *   The callback is an asynchronous function that you pass. It will give you the incoming data and you can do any operations on it ( remember its passed by reference, so your changes are reflected ) and at the end, it just responds with the changed data.
+*   The last one is the source name. It's your tag to communicate with other places and you will receive messages with this tag.
 
 ```javascript
 rabbitmqEasyRpc.listen({
@@ -108,6 +94,7 @@ rabbitmqEasyRpc.listen({
       //any logic you want to do before sending back to the requester
       console.log(data);
     },
+    source: "origin_name",
   });
 ```
 
@@ -115,7 +102,7 @@ rabbitmqEasyRpc.listen({
 
 You need this functionality to communicate with the other microservices. Maybe your microservice depends on another microservice, so it has to wait for the response to proceed.
 
-*   to : the destination you want to hit with your message. Remember you have to put the microservice\_origin's value of the destination , it has to be the same to hit
+*   to : the destination you want to hit with your message. Remember you have to put the source name's value of the destination , it has to be the same to hit
 *   data : You have to pass a string in any case because any other type will throw an error because rabbitMQ only works with buffers.
 *   channel: channel you want this call to use and perform communication.
 
@@ -141,19 +128,20 @@ So every microservice is labeled with a name. This name can be used to communica
 
 Below is a table of acceptable parameters for this library.
 
-### Listen : 
+### Listen :
 
 | Parameter | Description | Default | Validations |
 | --- | --- | --- | --- |
 | Channel | RabbitMQ's Channel |   | Required |
 | Callback | Function that handles the data before sending it back to the requester |   | Required |
+| source | label or tag for your section |   | required |
 
 ### Request
 
 | Parameter | Description | Default | Validations |
 | --- | --- | --- | --- |
 | to | destination microservice |   | Required |
-| data  | stringify version of your data to be passed  |   | Required |
+| data | stringify version of your data to be passed |   | Required |
 | Channel | RabbitMQ's Channel |   | Required |
 
 ## Author
